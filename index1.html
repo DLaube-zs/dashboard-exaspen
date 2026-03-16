@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Aspen</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-title">
+                <h1>Painel de Relatórios</h1>
+            </div>
+            <div class="header-actions">
+                <div class="filtros-data">
+                    <input type="date" id="data-inicio">
+                    <span>até</span>
+                    <input type="date" id="data-fim">
+                    <button id="btn-aplicar">Aplicar</button>
+                </div>
+                <button id="btn-exportar">Baixar CSV</button>
+            </div>
+        </header>
+
+        <div class="bento-grid">
+            
+            <div class="card span-3">
+                <h3>Usuários ativos</h3>
+                <h2 id="val-usuarios">-</h2>
+                <div class="delta" id="delta-usuarios"></div>
+            </div>
+            <div class="card span-3">
+                <h3>Visualizações</h3>
+                <h2 id="val-visualizacoes">-</h2>
+                <div class="delta" id="delta-visualizacoes"></div>
+            </div>
+            <div class="card span-3">
+                <h3>Contagem de eventos</h3>
+                <h2 id="val-eventos">-</h2>
+                <div class="delta" id="delta-eventos"></div>
+            </div>
+            <div class="card span-3">
+                <h3>Novos usuários</h3>
+                <h2 id="val-novos">-</h2>
+                <div class="delta" id="delta-novos"></div>
+            </div>
+
+            <div class="card span-8 grafico-container">
+                <h3>Evolução de Acessos</h3>
+                <div class="chart-wrapper"><canvas id="graficoEvolucao"></canvas></div>
+            </div>
+            <div class="card span-4 grafico-container">
+                <h3>Acessos por Dispositivo</h3>
+                <div class="chart-wrapper"><canvas id="graficoDispositivos"></canvas></div>
+            </div>
+
+            <div class="card span-8 mapa-container">
+                <h3>Usuários ativos por país</h3>
+                <div id="mapa-google" style="width: 100%; height: 350px;"></div>
+            </div>
+            <div class="card span-4 tabela-container">
+                <h3>Top Países</h3>
+                <table class="tabela-clean">
+                    <thead><tr><th style="text-align: left;">PÁÍS</th><th style="text-align: right;">USUÁRIOS</th></tr></thead>
+                    <tbody id="corpo-tabela-paises"></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

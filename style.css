@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Google Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f3f4f6;
+    color: #3c4043;
+    padding: 20px 40px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #dadce0;
+}
+
+h1 { font-size: 22px; color: #202124; font-weight: 400; }
+.header-actions { display: flex; gap: 16px; align-items: center; }
+.filtros-data { display: flex; align-items: center; gap: 8px; background: #fff; padding: 6px 12px; border: 1px solid #dadce0; border-radius: 4px; font-size: 14px; }
+.filtros-data input { border: none; outline: none; color: #3c4043; font-family: inherit; }
+
+button { background-color: #1a73e8; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 14px; transition: background 0.2s; }
+button:hover { background-color: #1557b0; }
+#btn-aplicar { background-color: #f1f3f4; color: #1a73e8; font-weight: 600; }
+#btn-aplicar:hover { background-color: #e8eaed; }
+
+/* Grid 12 Colunas */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-8 { grid-column: span 8; }
+
+.card {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+.card h3 { font-size: 14px; color: #5f6368; margin-bottom: 8px; font-weight: 500; }
+.card h2 { font-size: 28px; color: #202124; font-weight: 400; }
+.delta { font-size: 13px; margin-top: 4px; font-weight: 500; }
+.delta.positivo { color: #137333; }
+.delta.negativo { color: #c5221f; }
+.delta.neutro { color: #5f6368; }
+
+.grafico-container { height: 380px; }
+.mapa-container { height: 400px; }
+.tabela-container { height: 400px; overflow-y: auto; }
+
+.chart-wrapper {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.tabela-clean { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.tabela-clean th { font-size: 12px; color: #5f6368; border-bottom: 1px solid #dadce0; padding-bottom: 8px; font-weight: 500; position: sticky; top: 0; background: white; }
+.tabela-clean td { padding: 12px 0; border-bottom: 1px solid #f1f3f4; font-size: 13px; color: #202124; }
