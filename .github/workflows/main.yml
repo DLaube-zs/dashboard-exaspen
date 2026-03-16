@@ -1,0 +1,30 @@
+name: Atualizacao Diaria Aspen
+
+on:
+  schedule:
+    # Roda todos os dias às 06:00 da manhã (horário de Brasília)
+    - cron: '0 9 * * *'
+  workflow_dispatch: # Adiciona um botão para você rodar manualmente quando quiser testar
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar arquivos do repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar Bibliotecas
+        run: pip install google-analytics-data supabase
+
+      - name: Criar arquivo de chave temporario
+        env:
+          GOOGLE_JSON: ${{ secrets.GOOGLE_CREDENTIALS }}
+        run: echo "$GOOGLE_JSON" > credenciais.json
+
+      - name: Executar Script de Extracao
+        run: python extracao.py
