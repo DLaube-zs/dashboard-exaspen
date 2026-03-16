@@ -5,7 +5,7 @@ from google.analytics.data_v1beta.types import DateRange, Dimension, Metric, Run
 from supabase import create_client, Client
 
 # CREDENCIAIS
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "poc-projeto-aspen-ga4-7b5f34df6d2b.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credenciais.json"
 ID_DA_PROPRIEDADE = "522886753"
 URL_SUPABASE = "https://fdtyynugsefointunbyg.supabase.co"
 CHAVE_SUPABASE = "sb_publishable_heS85H31KelxAFO021Kxpg_yDPGSBCJ"
