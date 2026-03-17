@@ -29,7 +29,7 @@ async function carregarDashboard() {
             animarComGSAP();
         }
     } catch (err) {
-        console.error('Erro na conexão:', err);
+        console.error('Erro na ligação ao banco de dados:', err);
     }
 }
 
@@ -202,6 +202,9 @@ function animarComGSAP() {
     gsap.from(".card", { y: 20, opacity: 0, duration: 0.5, stagger: 0.05, ease: "power2.out" });
 }
 
+// ---------------------------------------------------------
+// EXPORTAÇÃO PROFISSIONAL PARA EXCEL (.xlsx) COM SHEETJS
+// ---------------------------------------------------------
 document.getElementById('btn-exportar').addEventListener('click', () => {
     const dataInicioStr = document.getElementById('data-inicio').value;
     const dataFimStr = document.getElementById('data-fim').value;
@@ -213,24 +216,71 @@ document.getElementById('btn-exportar').addEventListener('click', () => {
         return;
     }
 
-    let csvContent = "\uFEFFData;País;Cidade;Origem;Dispositivo;Página;Usuários Ativos;Visualizações;Eventos;Novos Usuários\n";
+    const dadosExcel = dadosFiltrados.map(linha => ({
+        "Data": linha.data,
+        "País": linha.pais,
+        "Cidade": linha.cidade,
+        "Origem": linha.origem,
+        "Dispositivo": linha.dispositivo,
+        "Página": linha.pagina,
+        "Usuários Ativos": linha.usuarios_ativos,
+        "Visualizações": linha.visualizacoes,
+        "Eventos": linha.eventos,
+        "Novos Usuários": linha.novos_usuarios
+    }));
 
-    dadosFiltrados.forEach(linha => {
-        let row = [
-            linha.data, `"${linha.pais}"`, `"${linha.cidade}"`, `"${linha.origem}"`,
-            `"${linha.dispositivo}"`, `"${linha.pagina}"`, linha.usuarios_ativos,
-            linha.visualizacoes, linha.eventos, linha.novos_usuarios
-        ].join(";");
-        csvContent += row + "\n";
+    const worksheet = XLSX.utils.json_to_sheet(dadosExcel);
+
+    // Ajustar a largura das células para o conteúdo ficar visível
+    worksheet['!cols'] = [
+        { wch: 12 }, { wch: 15 }, { wch: 20 }, { wch: 15 }, 
+        { wch: 12 }, { wch: 45 }, { wch: 15 }, { wch: 15 }, 
+        { wch: 12 }, { wch: 15 }
+    ];
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Relatorio_Aspen");
+    XLSX.writeFile(workbook, `relatorio_aspen_${dataInicioStr}_a_${dataFimStr}.xlsx`);
+});
+
+// ---------------------------------------------------------
+// GERAÇÃO DE APRESENTAÇÃO POWERPOINT (.pptx) COM PPTXGENJS
+// ---------------------------------------------------------
+document.getElementById('btn-apresentacao').addEventListener('click', () => {
+    let pptx = new pptxgen();
+    pptx.layout = 'LAYOUT_WIDE';
+
+    const usuariosAtivos = document.getElementById('val-usuarios').innerText;
+    const visualizacoes = document.getElementById('val-visualizacoes').innerText;
+    const dataInicioStr = document.getElementById('data-inicio').value;
+    const dataFimStr = document.getElementById('data-fim').value;
+
+    let slide = pptx.addSlide();
+
+    // Título Principal
+    slide.addText("Relatório de Performance Executivo - Aspen", { 
+        x: 0.5, y: 0.5, w: 12, h: 1, 
+        fontSize: 32, bold: true, color: "1a73e8" 
     });
 
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement("a");
-    link.setAttribute("href", URL.createObjectURL(blob));
-    link.setAttribute("download", `relatorio_aspen_${dataInicioStr}_a_${dataFimStr}.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Subtítulo (Período)
+    slide.addText(`Período analisado: ${dataInicioStr} a ${dataFimStr}`, { 
+        x: 0.5, y: 1.5, w: 12, h: 0.5, 
+        fontSize: 16, color: "5f6368" 
+    });
+
+    // Scorecard 1: Usuários Ativos
+    slide.addShape(pptx.ShapeType.rect, { x: 0.5, y: 3, w: 5, h: 2.5, fill: { color: "f8f9fa" } });
+    slide.addText("Usuários Ativos", { x: 0.5, y: 3.2, w: 5, h: 0.5, fontSize: 18, color: "5f6368", align: "center" });
+    slide.addText(usuariosAtivos, { x: 0.5, y: 4.0, w: 5, h: 1, fontSize: 54, bold: true, color: "202124", align: "center" });
+
+    // Scorecard 2: Visualizações
+    slide.addShape(pptx.ShapeType.rect, { x: 6, y: 3, w: 5, h: 2.5, fill: { color: "f8f9fa" } });
+    slide.addText("Visualizações", { x: 6, y: 3.2, w: 5, h: 0.5, fontSize: 18, color: "5f6368", align: "center" });
+    slide.addText(visualizacoes, { x: 6, y: 4.0, w: 5, h: 1, fontSize: 54, bold: true, color: "202124", align: "center" });
+
+    // Finaliza e transfere o ficheiro
+    pptx.writeFile({ fileName: `Apresentacao_Aspen_${dataInicioStr}.pptx` });
 });
 
 carregarDashboard();

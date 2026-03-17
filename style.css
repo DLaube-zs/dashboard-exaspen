@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Fundo mais claro para contrastar com os cartões */
     color: #3c4043;
     padding: 20px 40px;
 }
@@ -30,12 +30,12 @@ h1 { font-size: 22px; color: #202124; font-weight: 400; }
 .filtros-data { display: flex; align-items: center; gap: 8px; background: #fff; padding: 6px 12px; border: 1px solid #dadce0; border-radius: 4px; font-size: 14px; }
 .filtros-data input { border: none; outline: none; color: #3c4043; font-family: inherit; }
 
-button { background-color: #1a73e8; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 14px; transition: background 0.2s; }
-button:hover { background-color: #1557b0; }
+button { background-color: #1a73e8; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: 500; font-size: 14px; transition: background 0.2s, opacity 0.2s; }
+button:hover { opacity: 0.9; }
 #btn-aplicar { background-color: #f1f3f4; color: #1a73e8; font-weight: 600; }
-#btn-aplicar:hover { background-color: #e8eaed; }
+#btn-aplicar:hover { background-color: #e8eaed; opacity: 1; }
 
-/* Grid 12 Colunas */
+/* Grid 12 Colunas - Arquitetura Bento Box */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -58,6 +58,7 @@ button:hover { background-color: #1557b0; }
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efeito de flutuação ao passar o rato (hover) */
 .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.04);
@@ -66,6 +67,7 @@ button:hover { background-color: #1557b0; }
 .card h3 { font-size: 14px; color: #5f6368; margin-bottom: 8px; font-weight: 500; }
 .card h2 { font-size: 28px; color: #202124; font-weight: 400; }
 
+/* Design das percentagens em formato de "pílula" */
 .delta {
     display: inline-block;
     padding: 4px 10px;
@@ -76,20 +78,9 @@ button:hover { background-color: #1557b0; }
     width: fit-content;
 }
 
-.delta.positivo {
-    color: #137333;
-    background-color: #e6f4ea;
-}
-
-.delta.negativo {
-    color: #c5221f;
-    background-color: #fce8e6;
-}
-
-.delta.neutro {
-    color: #5f6368;
-    background-color: #f1f3f4;
-}
+.delta.positivo { color: #137333; background-color: #e6f4ea; }
+.delta.negativo { color: #c5221f; background-color: #fce8e6; }
+.delta.neutro { color: #5f6368; background-color: #f1f3f4; }
 
 .grafico-container { height: 380px; }
 .mapa-container { height: 400px; }

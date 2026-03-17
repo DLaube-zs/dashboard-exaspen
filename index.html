@@ -10,6 +10,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/libs/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -24,7 +28,8 @@
                     <input type="date" id="data-fim">
                     <button id="btn-aplicar">Aplicar</button>
                 </div>
-                <button id="btn-exportar">Baixar CSV</button>
+                <button id="btn-exportar" style="background-color: #137333;">Baixar Excel</button>
+                <button id="btn-apresentacao" style="background-color: #e37400;">Gerar Apresentação</button>
             </div>
         </header>
 
@@ -67,7 +72,7 @@
             <div class="card span-4 tabela-container">
                 <h3>Top Países</h3>
                 <table class="tabela-clean">
-                    <thead><tr><th style="text-align: left;">PÁÍS</th><th style="text-align: right;">USUÁRIOS</th></tr></thead>
+                    <thead><tr><th style="text-align: left;">PAÍS</th><th style="text-align: right;">USUÁRIOS</th></tr></thead>
                     <tbody id="corpo-tabela-paises"></tbody>
                 </table>
             </div>
