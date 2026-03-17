@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f8f9fa; /* Fundo mais claro para contrastar com os cartões */
+    background-color: #f8f9fa;
     color: #3c4043;
     padding: 20px 40px;
 }
@@ -35,7 +35,6 @@ button:hover { opacity: 0.9; }
 #btn-aplicar { background-color: #f1f3f4; color: #1a73e8; font-weight: 600; }
 #btn-aplicar:hover { background-color: #e8eaed; opacity: 1; }
 
-/* Grid 12 Colunas - Arquitetura Bento Box */
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -58,7 +57,6 @@ button:hover { opacity: 0.9; }
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efeito de flutuação ao passar o rato (hover) */
 .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.04);
@@ -67,7 +65,6 @@ button:hover { opacity: 0.9; }
 .card h3 { font-size: 14px; color: #5f6368; margin-bottom: 8px; font-weight: 500; }
 .card h2 { font-size: 28px; color: #202124; font-weight: 400; }
 
-/* Design das percentagens em formato de "pílula" */
 .delta {
     display: inline-block;
     padding: 4px 10px;

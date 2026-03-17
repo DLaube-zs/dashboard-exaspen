@@ -10,10 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.12.0/pptxgen.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -28,8 +25,7 @@
                     <input type="date" id="data-fim">
                     <button id="btn-aplicar">Aplicar</button>
                 </div>
-                <button id="btn-exportar" style="background-color: #137333;">Baixar Excel</button>
-                <button id="btn-apresentacao" style="background-color: #e37400;">Gerar Apresentação</button>
+                <button id="btn-exportar" style="background-color: #137333;">Exportar Relatório</button>
             </div>
         </header>
 
@@ -37,22 +33,22 @@
             
             <div class="card span-3">
                 <h3>Usuários ativos</h3>
-                <h2 id="val-usuarios">-</h2>
+                <h2 id="val-usuarios">0</h2>
                 <div class="delta" id="delta-usuarios"></div>
             </div>
             <div class="card span-3">
                 <h3>Visualizações</h3>
-                <h2 id="val-visualizacoes">-</h2>
+                <h2 id="val-visualizacoes">0</h2>
                 <div class="delta" id="delta-visualizacoes"></div>
             </div>
             <div class="card span-3">
                 <h3>Contagem de eventos</h3>
-                <h2 id="val-eventos">-</h2>
+                <h2 id="val-eventos">0</h2>
                 <div class="delta" id="delta-eventos"></div>
             </div>
             <div class="card span-3">
                 <h3>Novos usuários</h3>
-                <h2 id="val-novos">-</h2>
+                <h2 id="val-novos">0</h2>
                 <div class="delta" id="delta-novos"></div>
             </div>
 
