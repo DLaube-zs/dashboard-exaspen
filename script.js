@@ -247,7 +247,7 @@ document.getElementById('btn-exportar').addEventListener('click', () => {
 // GERAÇÃO DE APRESENTAÇÃO POWERPOINT (.pptx) COM PPTXGENJS
 // ---------------------------------------------------------
 document.getElementById('btn-apresentacao').addEventListener('click', () => {
-    let pptx = new pptxgen();
+    let pptx = new PptxGenJS();
     pptx.layout = 'LAYOUT_WIDE';
 
     const usuariosAtivos = document.getElementById('val-usuarios').innerText;
