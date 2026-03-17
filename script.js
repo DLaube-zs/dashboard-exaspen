@@ -151,7 +151,7 @@ function desenharGraficoDispositivos(dados) {
             datasets: [{ 
                 data: [contagem.desktop, contagem.mobile, contagem.tablet], 
                 backgroundColor: ['#1a73e8', '#34a853', '#fbbc04'], 
-                borderWidth: 0 // Remove os espaços em branco entre as fatias
+                borderWidth: 0
             }]
         },
         options: { 
@@ -213,14 +213,14 @@ document.getElementById('btn-exportar').addEventListener('click', () => {
         return;
     }
 
-    let csvContent = "\uFEFFData,País,Cidade,Origem,Dispositivo,Página,Usuários Ativos,Visualizações,Eventos,Novos Usuários\n";
+    let csvContent = "\uFEFFData;País;Cidade;Origem;Dispositivo;Página;Usuários Ativos;Visualizações;Eventos;Novos Usuários\n";
 
     dadosFiltrados.forEach(linha => {
         let row = [
             linha.data, `"${linha.pais}"`, `"${linha.cidade}"`, `"${linha.origem}"`,
             `"${linha.dispositivo}"`, `"${linha.pagina}"`, linha.usuarios_ativos,
             linha.visualizacoes, linha.eventos, linha.novos_usuarios
-        ].join(",");
+        ].join(";");
         csvContent += row + "\n";
     });
 
